@@ -1,3 +1,6 @@
 # ~/.oh-my-zsh/custom/plugins/printc/printc
 
-zsh $ZSH/plugins/printc/printc_scpt $@
+# Wrapper for allowing the plugin to be used inside zsh scripts
+# with 'autoload -Uz printc'
+
+zsh $0:h/printc_scpt $@
