@@ -24,14 +24,20 @@ underline text.
  - [Usage](#Usage)
     - [Options](#Options)
     - [General Structure of Command](#General-Structure-of-Command)
- - [Notes on Environment Setup and Script Usage](#Notes-on-Environment-Setup-and-Script-Usage)
 
 
 ## Setup
-To use, add printc to the plugins array inside your `~/.zshrc` file:
-```
-plugins=(... printc)
-```
+`git clone https://github.com/philFernandez/printc-.git`
+
+Put the `printc` file in a location that is in your $PATH. Perhaps `~/bin` or `~/.bin`
+or any other directory which you have access to, and is in your $PATH. There is an
+autocomplete function included called `_printc`. Put that file in any location
+which is under your $fpath. You may need to delete the ~/.zcompdump file, and reload
+zsh. This will re-build the ~/.zcompdump file, and should pick up the new completion
+function as long as it is stored in a directory that is in the $fpath. The autocomplete
+is nice because it lets you tab through all of the built in colors included
+with this plugin.
+
 ## Configuration
 
 ### Requirements
@@ -48,7 +54,7 @@ export TERM=xterm-256color
 ```
 
 It is possible that this is all that will be needed for the italic functionality to work
-as well. I do reccomend trying and seeing if italics work. It it does not, just follow the
+as well. I do recommend trying and seeing if italics work. It it does not, just follow the
 simple steps below.
 
 ### Italics Setup
@@ -56,7 +62,7 @@ simple steps below.
 
  2) Create a file inside `~/.terminfo` called `xterm-256color-italics.terminfo`
 
- 3) Place the follwing contents inside `xterm-256color-italics.terminfo` *exactly* as
+ 3) Place the following contents inside `xterm-256color-italics.terminfo` *exactly* as
  they are shown:
 
  ```
@@ -104,29 +110,5 @@ simple steps below.
      * Quoting the intended output is not required when using built in color options.
  * Options can be given in any order, and chained together, such as
  `-buinC <built in color>`, so long as `built in color` follows immediately after `-C`,
- and in the case of using RGB values, they must come after any options that are given.
-
-# Notes on Environment Setup and Script Usage
- Immediately after setup, the `printc` command will be available to use
- interactively, or inside aliases and functions. You can create nice colorized, formatted
- text for your output. In order to be used inside ZSH scripts, you will need to make the
- `printc` tool available outside of your current shell. One easy way to do this is to add
- the following lines to your `~/.zshenv` file.
-
- ```
- fpath=($HOME/.oh-my-zsh/plugins/printc $fpath)'
- ZSH=$HOME/.oh-my-zsh/'
- ```
- The first line makes the plugin itself available to shells that are forked from your
- interactive session, and the second line is an environment variable provided by OMZ,
- which is referenced inside of the `printc` plugin, and therefore needs to be exposed to
- children shells who want access to the tool. This can be done manually, or there is an
- included script, called `setup.sh` which will set everything up automatically if ran. It
- only needs to be ran once.
-
- And finally, any script that uses the `printc` command will have to include the line
- `autoload -Uz printc` near the top.
-
- If you only want to use `printc` interactively, and/or inside functions and aliases, then
- the above environment setup is not needed.
+   and in the case of using RGB values, they must come after any options that are given.
 
