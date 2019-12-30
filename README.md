@@ -58,6 +58,30 @@ as well. I do recommend trying and seeing if italics work. It it does not, just 
 simple steps below.
 
 ### Italics Setup
+
+---
+##### An Aside on Italics
+ * It is likely that the italics as implemented in the `printc` plugin
+   will work without needing the setup described below.
+ * This section is here as reference for people who *do* have problems getting
+   italics to work in the terminal.
+ * This method of enabling italics may cause problems.
+ * The most common problems arise for those who ssh into remote machines.
+ * If you do use this method, and end up with ssh problems, because the terminal
+   reports a TERM value that the server doesn't understand, it can probably be remedied as
+   follows...
+
+
+ Logging into a remote server with something like `ssh user@remote.host`
+
+ Can be changed to `TERM=xterm-256color ssh user@remote.host`
+
+ Prepending `TERM=xterm-256color` just before your normal ssh command will pass along a
+ TERM value that the server understands, without impacting your local TERM value. This can
+ be aliased for convenience.
+
+---
+
  1) Create a directory `~/.terminfo`
 
  2) Create a file inside `~/.terminfo` called `xterm-256color-italics.terminfo`
