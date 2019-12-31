@@ -104,7 +104,10 @@ simple steps below.
  You can export TERM in your `~/.zshrc` or `~/.zshenv` or many other ways. If you're an
  iTerm2 user you can do it through the GUI terminal emulator settings there. It doesn't
  matter how you do it, as long as the TERM environment variable is set and exported to
- one of the above mentioned values, most likely the latter if you want italics.
+ one of the above mentioned values, either `xterm-256color` or `xterm-256color-italic`.
+ Again, I recommend trying things out with `xterm-256color` and seeing if they work for
+ you *before* following the italics setup.
+
 
  As an aside, I have not tested this inside TMUX, but it should work there as long as the
  environment is set up to properly handle color and italics.
