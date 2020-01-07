@@ -1,7 +1,5 @@
 #!/bin/zsh -f
 
-emulate -L zsh
-
 usage() {
   local yellow="\033[38;5;003m"
   local green="\033[38;5;002m"
@@ -144,12 +142,6 @@ elif [[ $color_flag ]] || [[ $u_flag ]] || \
   if [[ $i_flag ]]; then
     IT="\033[3m" # italic
   fi
-else
-  echo
-  echo "\033[1m\033[38;5;001mInvalid Input${RS}"
-  echo
-  usage
-  exit 1
 fi
 
 # If built in color was used, set the RGB value to those
