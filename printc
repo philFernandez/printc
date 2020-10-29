@@ -13,6 +13,7 @@ ${yellow}FLAGS:${RS}
     ${green}-b${RS}     \033[1mbold${RS}
     ${green}-i${RS}     \033[3mitalic${RS}
     ${green}-u${RS}     \033[4munderline${RS}
+    ${green}-k${RS}     \033[5mblink${RS}
     ${green}-n${RS}     do not add newline to the result${RS}
     ${green}-l${RS}     list built in colors${RS}
     ${green}-h${RS}     show this help message${RS}
@@ -112,7 +113,8 @@ test_input() {
 }
 
 zparseopts -D - \
-  C:=color_flag u=u_flag b=b_flag i=i_flag l=l_flag h=h_flag n=n_flag
+  C:=color_flag u=u_flag b=b_flag i=i_flag k=k_flag \
+  l=l_flag h=h_flag n=n_flag
 
 if [[ $l_flag ]] || [[ $h_flag ]];then
   [[ $h_flag ]] && usage || \
@@ -122,7 +124,7 @@ if [[ $l_flag ]] || [[ $h_flag ]];then
     }
   exit 0
 elif [[ $color_flag ]] || [[ $u_flag ]] || \
-  [[ $b_flag ]] || [[ $i_flag ]]; then
+  [[ $b_flag ]] || [[ $i_flag ]] || [[ $k_flag ]]; then
 
   if [[ $color_flag ]]; then
     test_input $color_flag[2]
@@ -141,6 +143,9 @@ elif [[ $color_flag ]] || [[ $u_flag ]] || \
   fi
   if [[ $i_flag ]]; then
     IT="\033[3m" # italic
+  fi
+  if [[ $k_flag ]]; then
+    IT="\033[5m" # blink
   fi
 fi
 

@@ -10,8 +10,8 @@ can be achieved via the form R G B, where R, G and B are any numeric value
 between 0 and 255, representing the red, green, blue color space values respectively.
 Users of this plugin are able to issue a  `printc` statement, followed by the previous
 mentioned rgb values, followed by the text to be printed. There is also 36 built in colors
-which can be accessed via tab auto-complete. And there is support for bold, italic, and
-underline text.
+which can be accessed via tab auto-complete. And there is support for bold, italic,
+blinking, and underline text.
 
 ![screenshot](https://imgur.com/K0FVGzr.png)
 
@@ -112,6 +112,11 @@ simple steps below.
  As an aside, I have not tested this inside TMUX, but it should work there as long as the
  environment is set up to properly handle color and italics.
 
+### Blinking Text
+
+Many terminals have no support for blinking text. This may be considered a feature of
+those terminals rather than a bug.
+
 # Usage
 
 ### Options
@@ -120,19 +125,20 @@ simple steps below.
   | -b                  | Bold                   |
   | -u                  | Underline              |
   | -i                  | Italic                 |
+  | -k                  | Blink                  |
   | -C `color`          | Specify built in color |
   | -l                  | List built in colors   |
   | -n                  | No newline             |
   | -h                  | Display help page      |
 
 ### General Structure of Command
- * `printc [-b] [-u] [-i] [-n] <0-255> <0-255> <0-255> "Colorized Text to Display"`
+ * `printc [-b] [-u] [-i] [-k] [-n] <0-255> <0-255> <0-255> "Colorized Text to Display"`
      * This is the structure used when specifying a color with RGB values.
      * Note the absense of quotes around the RGB numbers, this is required.
      * Note the inclusion of quotes around the intended output, also required.
          * As usual double quotes will allow parameter expansion.
      * The RGB values must come after any options, and before the intended output.
- * `printc [-b] [-u] [-i] [-n]> -C <built in color> "Colorized Text to Display"`
+ * `printc [-b] [-u] [-i] [-k] [-n] -C <built in color> "Colorized Text to Display"`
      * This is the structure used when specifying a color that is built in to the plugin.
      * Quoting the intended output is not required when using built in color options.
  * Options can be given in any order, and chained together, such as
