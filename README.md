@@ -115,26 +115,30 @@ simple steps below.
 # Usage
 
 ### Options
-  | Option              | Function               |
-  | :-----------------: | --------------         |
-  | -b                  | Bold                   |
-  | -u                  | Underline              |
-  | -i                  | Italic                 |
-  | -C `color`          | Specify built in color |
-  | -l                  | List built in colors   |
-  | -n                  | No newline             |
-  | -h                  | Display help page      |
+  | Option              | Function                    |
+  | :-----------------: | --------------              |
+  | -b                  | Bold                        |
+  | -u                  | Underline                   |
+  | -i                  | Italic                      |
+  | -C `color`          | Specify built in color      |
+  | -l                  | List built in colors        |
+  | -n                  | No newline                  |
+  | -r                  | No ending ANSI code         |
+  | -R                  | Print only ending ANSI code |
+  | -h                  | Display help page           |
 
 ### General Structure of Command
- * `printc [-b] [-u] [-i] [-n] <0-255> <0-255> <0-255> "Colorized Text to Display"`
+ * `printc [-b] [-u] [-i] [-n] [-r] <0-255> <0-255> <0-255> "Colorized Text to Display"`
      * This is the structure used when specifying a color with RGB values.
      * Note the absense of quotes around the RGB numbers, this is required.
      * Note the inclusion of quotes around the intended output, also required.
          * As usual double quotes will allow parameter expansion.
      * The RGB values must come after any options, and before the intended output.
- * `printc [-b] [-u] [-i] [-n]> -C <built in color> "Colorized Text to Display"`
+ * `printc [-b] [-u] [-i] [-n] [-r] -C <built in color> "Colorized Text to Display"`
      * This is the structure used when specifying a color that is built in to the plugin.
      * Quoting the intended output is not required when using built in color options.
+ * `printc -R`
+     * For use with an earlier `printc -r -C <color> "text"`, for use in prompts and other places where the color code and the ending code may need to be separate.
  * Options can be given in any order, and chained together, such as
  `-buinC <built in color>`, so long as `built in color` follows immediately after `-C`,
    and in the case of using RGB values, they must come after any options that are given.

@@ -14,6 +14,8 @@ ${yellow}FLAGS:${RS}
     ${green}-i${RS}     \033[3mitalic${RS}
     ${green}-u${RS}     \033[4munderline${RS}
     ${green}-n${RS}     do not add newline to the result${RS}
+    ${green}-r${RS}     do not add ending escape sequence to the result${RS}
+    ${green}-R${RS}     print ONLY the ending escape sequence (assumes -n)${RS}
     ${green}-l${RS}     list built in colors${RS}
     ${green}-h${RS}     show this help message${RS}
 
@@ -112,7 +114,13 @@ test_input() {
 }
 
 zparseopts -D - \
-  C:=color_flag u=u_flag b=b_flag i=i_flag l=l_flag h=h_flag n=n_flag
+  C:=color_flag u=u_flag b=b_flag i=i_flag l=l_flag h=h_flag n=n_flag \
+  r=r_flag R=R_flag
+
+if [[ $R_flag ]]; then
+  echo -n "${RS}"
+  exit 0
+fi
 
 if [[ $l_flag ]] || [[ $h_flag ]];then
   [[ $h_flag ]] && usage || \
@@ -169,6 +177,13 @@ else
     usage
     exit 1
   fi
+fi
+
+if [[ $r_flag ]]; then
+  # If -r option is given, omit the closing escape sequence
+  # maybe a little hackish, but it's the end of the script, so
+  # we're not going to need the correct $RS later
+  RS=''
 fi
 
 if [[ $n_flag ]]; then
