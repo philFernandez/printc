@@ -180,7 +180,7 @@ else
 fi
 
 if [[ $r_flag ]]; then
-  # If -N option is given, omit the closing escape sequence
+  # If -r option is given, omit the closing escape sequence
   # maybe a little hackish, but it's the end of the script, so
   # we're not going to need the correct $RS later
   RS=''
